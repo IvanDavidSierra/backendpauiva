@@ -20,29 +20,5 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClientesControlador {
     @Autowired
     ClientesService service;
-    
-    @GetMapping("/submit")
-    public List<Clientes> listar(){
-        return service.listar();
-    }
-    
-    @PostMapping("/submit")
-    public Clientes agregar(@RequestBody Clientes p){
-        return service.add(p);
-    }
-    
-    @GetMapping("/submit/{id}")
-    public Clientes listarId(@PathVariable("id") int id){
-        return service.listarId(id);
-    }
-    
-    @PutMapping("/submit/{id}")
-    public Clientes  editar(@RequestBody Clientes p, @PathVariable("id") int id){
-        p.setIdcliente(id);
-        return service.edit(p);
-    }
-    @DeleteMapping("/submit/{id}") 
-    public Clientes delete(@PathVariable("id") int id){
-        return service.delete(id);
-    }
+
 }
