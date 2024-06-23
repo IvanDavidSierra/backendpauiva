@@ -23,13 +23,29 @@ public class ClientesControlador {
         Clientes nuevoCliente = clientesService.registrarCliente(cliente);
         return ResponseEntity.ok(nuevoCliente);
     }
-
+    
+    @PostMapping("/register-pymes")
+    public ResponseEntity<?> registrarClientePymes(@RequestBody Clientes cliente) {
+        Clientes nuevoCliente = clientesService.registrarClientePymes(cliente);
+        return ResponseEntity.ok(nuevoCliente);
+    }
+    
+    @PostMapping("/register-empresariales")
+    public ResponseEntity<?> registrarClienteEmpresariales(@RequestBody Clientes cliente) {
+        Clientes nuevoCliente = clientesService.registrarClienteEmpresariales(cliente);
+        return ResponseEntity.ok(nuevoCliente);
+    }
+    
     @PostMapping("/login")
     public ResponseEntity<?> loginCliente(@RequestBody Map<String, String> body) {
         String correo = body.get("correo");
-        String contraseña = body.get("contraseña");
+        String password = body.get("password");
 
-        Clientes cliente = clientesService.loginCliente(correo, contraseña);
+        if (correo == null || correo.isEmpty() || password == null || password.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Falta correo o contraseña");
+        }
+
+        Clientes cliente = clientesService.loginCliente(correo, password);
         if (cliente != null) {
             return ResponseEntity.ok(cliente);
         } else {
