@@ -19,6 +19,10 @@ public class Clientes {
     private String correo;
     @Column
     private String contraseña;
+    @Column
+    private String razon_social;
+    @Column 
+    private String nit;
 
     public int getIdcliente() {
         return idcliente;
@@ -75,4 +79,21 @@ public class Clientes {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     } 
+
+    public String getRazon_social() {
+        return razon_social;
+    }
+
+    public void setRazon_social(String razon_social) {
+        this.razon_social = razon_social;
+    }
+
+    public String getNit() {
+        return nit;
+    }
+
+    public void setNit(String nit) {
+        this.nit = nit;
+    }
+    
 }
