@@ -71,10 +71,30 @@ public class ClientesServiceImp implements ClientesService{
                     System.out.println("Contraseña nula o vacía para el correo: " + correo);
                     return null; // Devolver null si la contraseña es nula o vacía
                 }
-
                 return cliente;
             });
     }
-
+    
+    @Override
+    public Clientes obtenerClientePorCorreo(String correo) {
+        String sql = "SELECT * FROM clientes WHERE correo = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql, new Object[]{correo},
+                    (rs, rowNum) -> {
+                        Clientes cliente = new Clientes();
+                        cliente.setIdcliente(rs.getInt("idcliente"));
+                        cliente.setNombre(rs.getString("nombre"));
+                        cliente.setApellido(rs.getString("apellido"));
+                        cliente.setTelefono(rs.getInt("telefono"));
+                        cliente.setCorreo(rs.getString("correo"));
+                        cliente.setPassword(rs.getString("password"));
+                        // Añadir más campos según sea necesario
+                        return cliente;
+                    });
+        } catch (Exception e) {
+            // Manejar la excepción, por ejemplo, loguearla
+            return null; // Devolver null si no se encuentra el cliente
+        }
+    }
 }
 
