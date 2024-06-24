@@ -12,7 +12,7 @@ public class Avaluo {
     private String fecha;
 
     @Column
-    private int valor;
+    private String valor;
     
     @Column
     private String descripcion;
@@ -39,11 +39,11 @@ public class Avaluo {
         this.fecha = fecha;
     }
 
-    public int getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 

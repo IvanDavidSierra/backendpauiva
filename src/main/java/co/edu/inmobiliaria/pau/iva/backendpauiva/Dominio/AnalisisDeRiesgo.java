@@ -17,7 +17,7 @@ public class AnalisisDeRiesgo {
     @Column
     private int inmueble;
     @Column
-    private int pago;
+    private String pago;
 
     public int getIdanalisis() {
         return idanalisis;
@@ -59,11 +59,11 @@ public class AnalisisDeRiesgo {
         this.inmueble = inmueble;
     }
 
-    public int getPago() {
+    public String getPago() {
         return pago;
     }
 
-    public void setPago(int pago) {
+    public void setPago(String pago) {
         this.pago = pago;
     }
 

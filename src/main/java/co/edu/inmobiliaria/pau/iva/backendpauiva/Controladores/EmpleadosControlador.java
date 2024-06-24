@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping({"/empleados"})
 public class EmpleadosControlador {
-        @Autowired
+    @Autowired
     EmpleadosService service;
     
     @GetMapping("/submit")
