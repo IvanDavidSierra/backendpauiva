@@ -1,5 +1,6 @@
 package co.edu.inmobiliaria.pau.iva.backendpauiva.Servicios;
 import co.edu.inmobiliaria.pau.iva.backendpauiva.Dominio.Clientes;
+import co.edu.inmobiliaria.pau.iva.backendpauiva.Infraestructura.ClientesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -7,7 +8,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 @Service
 public class ClientesServiceImp implements ClientesService{
-    
+    @Autowired
+    ClientesRepository clientesRepository;
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -49,30 +51,17 @@ public class ClientesServiceImp implements ClientesService{
     }
 
     @Override
-    public Clientes loginCliente(String correo, String contraseña) {
-        String sql = "SELECT * FROM clientes WHERE correo = ? AND password = ?";
+    public Clientes login(String correo, String password) {
+        Clientes cliente = clientesRepository.findByCorreo(correo);
+        if (cliente != null && cliente.getPassword().equals(encriptarContraseña(password))) {
+            return cliente;
+        }
+        return null; // Usuario no encontrado o contraseña incorrecta
+    }
 
-        // Encriptar la contraseña proporcionada para hacer la comparación en la base de datos
-        String contraseñaEncriptada = DigestUtils.md5Hex(contraseña);
-
-        return jdbcTemplate.queryForObject(sql, new Object[]{correo, contraseñaEncriptada},
-            (rs, rowNum) -> {
-                Clientes cliente = new Clientes();
-                cliente.setNombre(rs.getString("nombre"));
-                cliente.setApellido(rs.getString("apellido"));
-                cliente.setCorreo(rs.getString("correo"));
-
-                // Verificar si la contraseña de la base de datos no es nula o vacía antes de accederla
-                String passwordBD = rs.getString("password");
-                if (passwordBD != null && !passwordBD.isEmpty()) {
-                    cliente.setPassword(passwordBD);
-                } else {
-                    // Manejar el caso de contraseña nula o vacía
-                    System.out.println("Contraseña nula o vacía para el correo: " + correo);
-                    return null; // Devolver null si la contraseña es nula o vacía
-                }
-                return cliente;
-            });
+    private String encriptarContraseña(String contraseña) {
+        // Encriptar la contraseña utilizando MD5
+        return DigestUtils.md5Hex(contraseña);
     }
     
     @Override

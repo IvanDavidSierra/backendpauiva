@@ -1,7 +1,7 @@
 package co.edu.inmobiliaria.pau.iva.backendpauiva.Controladores;
 import co.edu.inmobiliaria.pau.iva.backendpauiva.Dominio.Clientes;
 import co.edu.inmobiliaria.pau.iva.backendpauiva.Servicios.ClientesService;
-import java.util.Map;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClientesControlador {
     @Autowired
     private ClientesService clientesService;
+   
 
     @PostMapping("/register")
     public ResponseEntity<?> registrarCliente(@RequestBody Clientes cliente) {
@@ -48,19 +49,14 @@ public class ClientesControlador {
     }
     
     @PostMapping("/login")
-    public ResponseEntity<?> loginCliente(@RequestBody Map<String, String> body) {
-        String correo = body.get("correo");
-        String password = body.get("password");
-
-        if (correo == null || correo.isEmpty() || password == null || password.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Falta correo o contraseña");
-        }
-
-        Clientes cliente = clientesService.loginCliente(correo, password);
-        if (cliente != null) {
-            return ResponseEntity.ok(cliente);
+    public ResponseEntity<?> login(@RequestBody Clientes cliente) {
+        // Aquí asumimos que 'cliente' contiene al menos el correo y la contraseña
+        Clientes authenticatedCliente = clientesService.login(cliente.getCorreo(), cliente.getPassword());
+        
+        if (authenticatedCliente != null) {
+            return ResponseEntity.ok(authenticatedCliente);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
         }
     }
 }
