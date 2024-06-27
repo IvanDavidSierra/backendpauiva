@@ -1,6 +1,5 @@
 package co.edu.inmobiliaria.pau.iva.backendpauiva.Controladores;
 import co.edu.inmobiliaria.pau.iva.backendpauiva.Dominio.Clientes;
-import co.edu.inmobiliaria.pau.iva.backendpauiva.Infraestructura.ClientesRepository;
 import co.edu.inmobiliaria.pau.iva.backendpauiva.Servicios.ClientesService;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +20,6 @@ public class ClientesControlador {
     @Autowired
     private ClientesService clientesService;
     
-    @Autowired
-    private ClientesRepository clientesRepository;
    
     @PostMapping("/register")
     public ResponseEntity<?> registrarCliente(@RequestBody Clientes cliente) {
@@ -52,7 +49,6 @@ public class ClientesControlador {
             return ResponseEntity.status(401).build();
         }
     }
-    
     
     @GetMapping("/profile")
     public ResponseEntity<?> obtenerPerfilCliente(@RequestParam String correo) {

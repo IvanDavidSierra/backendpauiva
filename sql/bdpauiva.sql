@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-06-2024 a las 05:48:58
+-- Tiempo de generación: 27-06-2024 a las 23:37:00
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -101,27 +101,31 @@ CREATE TABLE `clientes` (
   `razon_social` varchar(50) DEFAULT NULL,
   `nit` varchar(30) DEFAULT NULL,
   `tipocliente` int(11) DEFAULT NULL,
-  `telefono` int(11) DEFAULT NULL,
-  `correo` varchar(30) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL
+  `telefono` varchar(20) DEFAULT NULL,
+  `correo` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`idcliente`, `nombre`, `apellido`, `razon_social`, `nit`, `tipocliente`, `telefono`, `correo`, `password`) VALUES
-(1, 'Nixon', 'Duarte', NULL, NULL, 1, 1234567891, 'Nixonduarte@inaplesinmo.com', 'c4ca4238a0b923820dcc509a6f75849b'),
-(2, 'Nicole', 'Vargas', NULL, NULL, 1, 235651212, 'NVargas@inaplesinmo.com', NULL),
-(22, 'eeeeeeeee', 'eeeeeeeeeee', NULL, NULL, 1, 2112111, 'eeeeeeee@gmail.com', '96ac0342a3ccf9553e3d4c9da9b821b0'),
-(23, 'eeeeeeeee', 'eeeeeeeeeee', NULL, NULL, 1, 2112111, 'eeeeeeee@gmail.com', '926e27eecdbc7a18858b3798ba99bddd'),
-(24, 'sdadasdasd', 'wqeqwewqx', NULL, NULL, 1, 124545, 'lllll@gmail.com', '68053af2923e00204c3ca7c6a3150cf7'),
-(25, 'asdasdasd', 'eeeeeeee', NULL, NULL, 1, 121122121, 'weweweweew@gmail.com', '202cb962ac59075b964b07152d234b70'),
-(26, 'asdasd', 'eeeeeeeee', NULL, NULL, 1, 112121, 'wewewewerqqqq@gmail.com', '42998cf32d552343bc8e460416382dca'),
-(27, 'asdasd', 'eeeeeeeee', NULL, NULL, 1, 112121, 'wewewewerqqqq@gmail.com', '15de21c670ae7c3f6f3f1f37029303c9'),
-(28, 'ola', 'comotas', NULL, NULL, 1, 5455445, 'ola21@gmail.com', '550a141f12de6341fba65b0ad0433500'),
-(29, 'ñññññ', 'ñññññ', NULL, NULL, 1, 87877887, 'ñññññ@gmail.com', '202cb962ac59075b964b07152d234b70'),
-(30, 'fffffffffff', 'ffffffffffff', NULL, NULL, 1, 4544545, 'fffff@gmail.com', '580796a888df897b38097bd6c1fdaa96');
+INSERT INTO `clientes` (`idcliente`, `nombre`, `apellido`, `razon_social`, `nit`, `tipocliente`, `telefono`, `correo`) VALUES
+(1, 'Nixon', 'Duarte', NULL, NULL, 1, '1234567891', 'Nixonduarte@inaplesinmo.com'),
+(2, 'Nicole', 'Vargas', NULL, NULL, 1, '235651212', 'NVargas@inaplesinmo.com'),
+(44, 'ewewqasd', 'acqwcqwc', NULL, NULL, 1, '12222144', 'cascaxzzcxc@hotmail.com'),
+(45, 'eeeeeqwqwe', 'qwqwqwqw', NULL, NULL, 1, '1597844', 'qwqsdafa@gmail.com'),
+(46, NULL, NULL, 'eeeeewwww', 'wwwwwww', 2, '1597444', 'qweqwe@gmail.com'),
+(47, 'mmmmmm', 'mmmmmmm', NULL, NULL, 1, '15977444', 'aaaa@gmail.com'),
+(48, 'aaaaaa', 'aaaae', NULL, NULL, 1, '365544', '222323@gmail.com'),
+(52, 'Ivan David', 'Sierra Cudriz', NULL, NULL, 1, '3103238798', 'ivansierra259@gmail.com'),
+(53, NULL, NULL, 'empresa chamo', '4448877777', 3, '98777745', 'chamo@gmail.com'),
+(54, 'aaa', 'aaaaaaa', NULL, NULL, 1, '1544444', 'pppppp'),
+(55, NULL, NULL, 'asdasd', 'eeeeee', 3, '2226655', 'asdasd@gmail.com'),
+(56, 'aaaaaa', 'aaadasd', NULL, NULL, 1, '1547777', 'asdasda@gmail.com'),
+(57, 'qqqwwww', 'eeeeeeeeeee', NULL, NULL, 1, '154444', 'asdasd@gmail.com'),
+(58, 'asdeqqqq', 'sddddsd', NULL, NULL, 1, '1515444', 'asdasdxcs@gmail.com'),
+(59, NULL, NULL, 'aaaaa', '151545454545', 2, '15444447', 'sdasda@gmailk.com'),
+(60, NULL, NULL, 'empresa ola', '11444444', 2, '154447877', 'ola2333@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -135,18 +139,17 @@ CREATE TABLE `empleados` (
   `apellido` varchar(20) DEFAULT NULL,
   `tipoempleado` int(11) DEFAULT NULL,
   `oficina` int(11) DEFAULT NULL,
-  `correo` varchar(50) DEFAULT NULL,
-  `contraseña` varchar(10) DEFAULT NULL,
-  `comisiones` int(11) DEFAULT NULL
+  `correo` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `empleados`
 --
 
-INSERT INTO `empleados` (`idempleado`, `nombre`, `apellido`, `tipoempleado`, `oficina`, `correo`, `contraseña`, `comisiones`) VALUES
-(1, 'Martha', 'Gonzales', 1, NULL, 'm.gonzales@inaplesinmo.com', NULL, NULL),
-(2, 'Juan', 'Perez', 2, NULL, 'juan.Perez@inaplesinmo.com', NULL, NULL);
+INSERT INTO `empleados` (`idempleado`, `nombre`, `apellido`, `tipoempleado`, `oficina`, `correo`) VALUES
+(1, 'Martha', 'Gonzales', 1, 1, 'm.gonzales@inaplesinmo.com'),
+(2, 'Juan', 'Perez', 2, 1, 'juan.Perez@inaplesinmo.com'),
+(3, 'Alejandro', 'Robles', 2, 2, 'alejarobles145@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -411,13 +414,13 @@ ALTER TABLE `citas`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `inmueble`

@@ -11,16 +11,13 @@ public class Empleados {
     private String nombre;
     @Column
     private String apellido;
-    @Column
-    private int tipoempleado;
+    @ManyToOne
+    @JoinColumn(name = "tipoempleado", referencedColumnName = "idtipoempleado")
+    private TipoEmpleado tipoEmpleado;
     @Column
     private int oficina;
     @Column
-    private String correo;
-    @Column
-    private String contraseña;    
-    @Column
-    private int comisiones;
+    private String correo; 
 
     public int getIdempleado() {
         return idempleado;
@@ -46,14 +43,13 @@ public class Empleados {
         this.apellido = apellido;
     }
 
-    public int getTipoempleado() {
-        return tipoempleado;
+    public TipoEmpleado getTipoEmpleado() {
+        return tipoEmpleado;
     }
 
-    public void setTipoempleado(int tipoempleado) {
-        this.tipoempleado = tipoempleado;
+    public void setTipoEmpleado(TipoEmpleado tipoEmpleado) {
+        this.tipoEmpleado = tipoEmpleado;
     }
-
     public int getOficina() {
         return oficina;
     }
@@ -68,22 +64,6 @@ public class Empleados {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-
-    public int getComisiones() {
-        return comisiones;
-    }
-
-    public void setComisiones(int comisiones) {
-        this.comisiones = comisiones;
     }
     
     

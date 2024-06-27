@@ -11,8 +11,9 @@ public class Clientes {
     private String nombre;
     @Column
     private String apellido;
-    @Column
-    private int tipocliente;
+    @ManyToOne
+    @JoinColumn(name = "tipocliente", referencedColumnName = "idtipocliente")
+    private TipoCliente tipoCliente;
     @Column
     private Long telefono;
     @Column
@@ -46,13 +47,14 @@ public class Clientes {
         this.apellido = apellido;
     }
 
-    public int getTipocliente() {
-        return tipocliente;
+    public TipoCliente getTipoCliente() {
+        return tipoCliente;
     }
 
-    public void setTipocliente(int tipocliente) {
-        this.tipocliente = tipocliente;
+    public void setTipoCliente(TipoCliente tipoCliente) {
+        this.tipoCliente = tipoCliente;
     }
+
 
     public Long getTelefono() {
         return telefono;
