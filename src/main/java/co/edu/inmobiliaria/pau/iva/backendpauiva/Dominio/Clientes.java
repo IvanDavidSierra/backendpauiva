@@ -1,6 +1,5 @@
 package co.edu.inmobiliaria.pau.iva.backendpauiva.Dominio;
 import jakarta.persistence.*;
-import org.apache.commons.codec.digest.DigestUtils;
 @Entity
 @Table(name = "clientes")
 public class Clientes {
@@ -15,11 +14,9 @@ public class Clientes {
     @Column
     private int tipocliente;
     @Column
-    private int telefono;
+    private Long telefono;
     @Column
     private String correo;
-    @Column
-    private String password;
     @Column
     private String razon_social;
     @Column 
@@ -57,11 +54,11 @@ public class Clientes {
         this.tipocliente = tipocliente;
     }
 
-    public int getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 
@@ -89,17 +86,4 @@ public class Clientes {
         this.nit = nit;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = DigestUtils.md5Hex(password); 
-    }
-    
-    public boolean checkPassword(String plainPassword) {
-        return this.password.equals(DigestUtils.md5Hex(plainPassword)); // Verificar la contraseña encriptada con MD5
-    }
-    
-    
 }
