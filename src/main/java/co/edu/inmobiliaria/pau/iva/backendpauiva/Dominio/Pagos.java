@@ -13,8 +13,9 @@ public class Pagos {
     private String consignacion;
     @Column
     private String descripcion;
-    @Column
-    private int cliente;
+    @ManyToOne
+    @JoinColumn(name = "cliente", referencedColumnName = "idcliente")
+    private Clientes cliente;
 
     public int getIdpagos() {
         return idpagos;
@@ -48,12 +49,14 @@ public class Pagos {
         this.descripcion = descripcion;
     }
 
-    public int getCliente() {
+    public Clientes getCliente() {
         return cliente;
     }
 
-    public void setCliente(int cliente) {
+    public void setCliente(Clientes cliente) {
         this.cliente = cliente;
     }
+
+
     
 }

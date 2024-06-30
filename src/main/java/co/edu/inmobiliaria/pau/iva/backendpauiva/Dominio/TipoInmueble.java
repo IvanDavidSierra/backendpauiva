@@ -11,8 +11,6 @@ public class TipoInmueble {
     @Column
     private String descripcioninmueble;   
     
-    @Column
-    private String estadoinmueble;   
 
     public int getIdtipoinmueble() {
         return idtipoinmueble;
@@ -30,12 +28,5 @@ public class TipoInmueble {
         this.descripcioninmueble = descripcioninmueble;
     }
 
-    public String getEstadoinmueble() {
-        return estadoinmueble;
-    }
-
-    public void setEstadoinmueble(String estadoinmueble) {
-        this.estadoinmueble = estadoinmueble;
-    }
     
 }

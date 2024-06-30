@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-06-2024 a las 23:37:00
+-- Tiempo de generación: 30-06-2024 a las 19:51:04
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -41,8 +41,8 @@ CREATE TABLE `analisisderiesgo` (
 --
 
 INSERT INTO `analisisderiesgo` (`idanalisis`, `listaclinton`, `centralesriesgo`, `certificado`, `inmueble`, `pago`) VALUES
-(1, 'No', 'Bajo', 'Cert001', NULL, NULL),
-(2, 'Si', 'Medio', 'cert002', NULL, NULL);
+(1, 'No', 'Bajo', 'Cert001', 1, 1),
+(2, 'Si', 'Medio', 'cert002', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -52,20 +52,18 @@ INSERT INTO `analisisderiesgo` (`idanalisis`, `listaclinton`, `centralesriesgo`,
 
 CREATE TABLE `avaluo` (
   `idavaluo` int(11) NOT NULL,
-  `fecha` varchar(10) DEFAULT NULL,
-  `valor` varchar(11) DEFAULT NULL,
-  `descripcion` text DEFAULT NULL,
-  `inmueble` int(11) DEFAULT NULL,
-  `cliente` int(11) DEFAULT NULL
+  `valor` varchar(30) DEFAULT NULL,
+  `inmueble` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `avaluo`
 --
 
-INSERT INTO `avaluo` (`idavaluo`, `fecha`, `valor`, `descripcion`, `inmueble`, `cliente`) VALUES
-(1, '15/06/2024', '$2.000.000', 'Descripción de la Propiedad:\nLa propiedad evaluada es un tipo de propiedad casa ubicada en la ciudad de Bogotá D.C sobre la calle 100. La estructura está construida con una estructura de concreto armado sus muroscon Ladrillo y bloques de concreto.\nCubierta con losas de concreto,su aislamiento con Fibra de vidrio,los acabados exteriores con estuco sus ventanas y puertas con Ventanas de aluminio y puertas de acero,los pisos de baldosas de cerámica.En cuanto a las instalaciones eléctricas y plomería esta en base de tubos de cobre o PVC para plomería,cables eléctricos de cobre,interruptores y enchufes estándar.\nSistema de Calefacción y Refrigeración cuanta con calentadores de agua a gas\n\nUbicación:\n\nLa propiedad se encuentra en el barrio del chicó de la ciudad de Bogotá D.C,Colombia.\n\nEstado de Conservación:\n\nLa propiedad se encuentra en buen estado de conservación, con mantenimiento regular y sin necesidad inmediata de reparaciones estructurales significativas.\n\nValoración:\n\nLa valoración de la propiedad se ha realizado de acuerdo con [método de valoración utilizado: comparativo de mercado, coste de reposición, método del ingreso, etc.], basándose en [factores relevantes para la valoración, como el estado de la propiedad, características específicas, ubicación, etc.].', NULL, NULL),
-(2, '20/06/2024', '$1.500.000', 'Avalúo de Propiedad Residencial\r\n\r\nDescripción de la Propiedad:\r\n\r\nLa propiedad evaluada es una casa unifamiliar de dos pisos, ubicada en Calle Principal del barrio Castilla, en la ciudad de Bogotá D.C,Colombia. La estructura está construida con concreto armado y tiene un área total de 200 metros cuadrados. La casa cuenta con cuatro habitaciones, tres baños completos, cocina, sala de estar, comedor y un garaje para dos vehículos. Está equipada con sistemas de calefacción central y aire acondicionado.\r\n\r\nUbicación:\r\n\r\nLa propiedad se encuentra en el barrio residencial de Calle Principal, conocido por su entorno tranquilo y familiar. Está cerca de escuelas, parques y centros comerciales, con fácil acceso a las principales vías de transporte.\r\n\r\nEstado de Conservación:\r\n\r\nLa propiedad se encuentra en excelente estado de conservación, con mantenimiento regular y sin necesidad de reparaciones estructurales significativas.\r\n\r\nValoración:\r\n\r\nLa valoración de la propiedad se ha realizado de acuerdo con el método comparativo de mercado, utilizando ventas recientes de propiedades similares en la zona. Además, se han considerado las características únicas de esta propiedad, como su tamaño, ubicación y los acabados de alta calidad.\r\n\r\nLista de Clinton:\r\n\r\nEstructura: Concreto armado.\r\nMuros: Ladrillo.\r\nCubierta: Tejas de barro.\r\nAislamiento: Lana mineral.\r\nAcabados Exteriores: Estuco.\r\nVentanas y Puertas: Ventanas de aluminio.\r\nPisos: Baldosas de cerámica.\r\nInstalaciones Eléctricas y Plomería: Tubos de cobre.\r\nSistema de Calefacción y Refrigeración: Calefacción central y aire acondicionado.\r\nOtros: Iluminación empotrada.\r\nValor Total:\r\n\r\nBasado en la lista de Clinton y otros factores relevantes, la valoración total de la propiedad asciende a [monto total en la moneda local]. Esta valoración refleja el valor de mercado actual y está sujeta a cambios según la oferta y demanda del mercado inmobiliario.', NULL, NULL);
+INSERT INTO `avaluo` (`idavaluo`, `valor`, `inmueble`) VALUES
+(1, '$2.000.000', 1),
+(2, '$1.500.000', 2),
+(3, '$100.000.000', 3);
 
 -- --------------------------------------------------------
 
@@ -85,8 +83,8 @@ CREATE TABLE `citas` (
 --
 
 INSERT INTO `citas` (`idcitas`, `fecha`, `estado`, `inmueble`) VALUES
-(1, '15/06/2024', 'Bueno', NULL),
-(2, '20/06/2024', 'Medio', NULL);
+(1, '15/06/2024', 'Bueno', 1),
+(2, '20/06/2024', 'Medio', 2);
 
 -- --------------------------------------------------------
 
@@ -160,21 +158,43 @@ INSERT INTO `empleados` (`idempleado`, `nombre`, `apellido`, `tipoempleado`, `of
 CREATE TABLE `inmueble` (
   `idinmueble` int(11) NOT NULL,
   `tipoinmueble` int(11) DEFAULT NULL,
+  `tituloinmueble` varchar(100) DEFAULT NULL,
+  `estado` varchar(20) DEFAULT NULL,
   `direccion` varchar(50) DEFAULT NULL,
   `descripcion` text DEFAULT NULL,
+  `habitaciones` int(11) DEFAULT NULL,
+  `banos` int(11) DEFAULT NULL,
+  `garajes` int(11) DEFAULT NULL,
+  `estrato` int(11) DEFAULT NULL,
+  `area` varchar(50) DEFAULT NULL,
   `propietario` int(11) DEFAULT NULL,
-  `foto` varchar(20) DEFAULT NULL,
+  `foto` varchar(500) DEFAULT NULL,
   `pago` int(11) DEFAULT NULL,
-  `comercial` int(11) DEFAULT NULL
+  `comercial` int(11) DEFAULT NULL,
+  `valor` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `inmueble`
 --
 
-INSERT INTO `inmueble` (`idinmueble`, `tipoinmueble`, `direccion`, `descripcion`, `propietario`, `foto`, `pago`, `comercial`) VALUES
-(1, NULL, 'Calle 100', 'Ubicada en un exclusivo barrio residencial, esta impresionante residencia de estrato alto combina elegancia y confort en cada detalle. Con una arquitectura moderna y acabados de lujo, la propiedad se extiende sobre aproximadamente 800 metros cuadrados. Sus espacios interiores incluyen una amplia sala de estar con techos altos y chimenea central, un comedor formal diseñado para grandes reuniones, y una cocina gourmet equipada con electrodomésticos de última generación y encimeras de mármol. Además, cuenta con varias suites principales y adicionales, todas con baños privados y armarios empotrados, un estudio o biblioteca, una sala de cine en casa, sala de juegos con mesa de billar, gimnasio privado y áreas de entretenimiento al aire libre. Los exteriores están diseñados con amplios jardines paisajísticos, terrazas cubiertas y descubiertas con vistas panorámicas, una piscina climatizada con jacuzzi, y un garaje privado para varios vehículos. Equipada con suelos de mármol, iluminación LED, climatización central y sistemas de seguridad avanzados, esta propiedad representa el epitome del lujo residencial, valorada por su ubicación exclusiva y todas las comodidades que ofrece.', 2, NULL, NULL, 1),
-(2, NULL, '76a40 Cl. 8a', 'La propiedad evaluada es una casa unifamiliar de dos pisos, ubicada en Calle Principal de Castilla,en la ciudad de Bogota D.C,Colombia. La estructura está construida con concreto armado y tiene un área total de 200 metros cuadrados. La casa cuenta con cuatro habitaciones, tres baños completos, cocina, sala de estar, comedor y un garaje para dos vehículos. Está equipada con sistemas de calefacción central y aire acondicionado.', 1, NULL, NULL, 2);
+INSERT INTO `inmueble` (`idinmueble`, `tipoinmueble`, `tituloinmueble`, `estado`, `direccion`, `descripcion`, `habitaciones`, `banos`, `garajes`, `estrato`, `area`, `propietario`, `foto`, `pago`, `comercial`, `valor`) VALUES
+(1, 1, 'Casa ubicada en Calle 100', 'Venta', 'Calle 100', 'Ubicada en un exclusivo barrio residencial, esta impresionante residencia de estrato alto combina elegancia y confort en cada detalle. Con una arquitectura moderna y acabados de lujo, la propiedad se extiende sobre aproximadamente 800 metros cuadrados. Sus espacios interiores incluyen una amplia sala de estar con techos altos y chimenea central, un comedor formal diseñado para grandes reuniones, y una cocina gourmet equipada con electrodomésticos de última generación y encimeras de mármol. Además, cuenta con varias suites principales y adicionales, todas con baños privados y armarios empotrados, un estudio o biblioteca, una sala de cine en casa, sala de juegos con mesa de billar, gimnasio privado y áreas de entretenimiento al aire libre. Los exteriores están diseñados con amplios jardines paisajísticos, terrazas cubiertas y descubiertas con vistas panorámicas, una piscina climatizada con jacuzzi, y un garaje privado para varios vehículos. Equipada con suelos de mármol, iluminación LED, climatización central y sistemas de seguridad avanzados, esta propiedad representa el epitome del lujo residencial, valorada por su ubicación exclusiva y todas las comodidades que ofrece.', 4, 2, 1, 3, '450.30cm3', 2, 'inmueble-destacada1.jpg', 1, 1, '$100.000.000'),
+(2, 2, 'Apartamento en la Calle 8', 'Arriendo', '76a40 Cl. 8a', 'La propiedad evaluada es una casa unifamiliar de dos pisos, ubicada en Calle Principal de Castilla,en la ciudad de Bogota D.C,Colombia. La estructura está construida con concreto armado y tiene un área total de 200 metros cuadrados. La casa cuenta con cuatro habitaciones, tres baños completos, cocina, sala de estar, comedor y un garaje para dos vehículos. Está equipada con sistemas de calefacción central y aire acondicionado.', 3, 1, 0, 3, '250.00cm3', 1, 'inmueble-destacada2.jpg', 2, 2, '$800.000'),
+(3, 1, 'Casa ubicada en la 30', 'Venta', 'Cra. 33 # 40 - 15', 'casa muy buena', 2, 1, 0, 2, '120.00cm3', 52, 'inmueble-destacada3.jpg', 2, 3, '$1.200.000'),
+(4, 2, 'Apartamento ubicado en Cedritos', 'Venta', 'Bogotá / Cedritos', 'Casa en cedritos', 3, 2, 0, 4, '120.00cm3', 44, 'casa-cedritos.JPG', 1, 1, '$450.000.000'),
+(5, 1, 'Casa ubicada en la Calle 100', 'Venta', 'Bogotá / Calle 100', 'Casa en la calle 100', 3, 2, 1, 4, '120.0cm3', 2, 'Casa-calle100.JPG', 2, 3, '$1.100.000.000'),
+(6, 1, 'Casa ubicada en Engativa', 'Venta', 'Bogotá/Engativa', 'Casa ubicada en Engativa', 2, 1, 0, 3, '210.20cm3', 52, 'casa-engativa.jpg', 2, 1, '$2.100.000.000'),
+(7, 1, 'Casa ubicada en Kennedy', 'Venta', 'Bogotá/ Kennedy', 'Casa en Kennedy', 2, 1, 1, 3, '129.02cm3', 2, 'casa-kennedy.JPG', 2, 2, '$100.000.000'),
+(8, 1, 'Casa ubicada en Colina Campestre', 'Venta', 'Bogotá / Colina Campestre', 'Casa en Colina Campestre', 4, 3, 2, 4, '350.20cm3', 52, 'casa-colina.JPG', 2, 2, '$500.000.000'),
+(9, 1, 'Casa ubicada en Barrios Unidos', 'Venta', 'Bogotá / Barrios Unidos', 'Casa en Barrios Unidos', 2, 1, 0, 3, '120.35cm3', 2, 'casa-barriosunidos.JPG', 1, 3, '$240.000.000'),
+(10, 3, 'Lote ubicado en Bosa', 'Venta', 'Bogotá / Bosa', 'Lote en Bosa', 0, 0, 0, 3, '125.00cm3', 52, 'lote-bosa.JPG', 1, 2, '$150.000.000'),
+(11, 1, 'Casa ubicada en Castilla', 'Venta', 'Bogotá / Castilla', 'Casa en Castilla', 4, 2, 1, 3, '250.20cm3', 1, 'casa-castilla.JPG', 1, 3, '$150.000.000'),
+(12, 2, 'Apartamento ubicado en Centro de Niza', 'Venta', 'Bogotá /  Centro de Niza', 'Apartamento ubicado en Centro de niza', 2, 1, 0, 2, '120.00cm3', 52, 'Venta11.JPG', 1, 3, '$1.997.000.000'),
+(13, 1, 'Casa ubicada en Villa del Prado', 'Venta', 'Bogotá / Villa del Prado', 'Casa en Villa del Prado', 2, 1, 0, 3, '126.20cm3', 52, 'Venta12.JPG', 1, 2, '$400.000.000'),
+(14, 1, 'Casa ubicada en La Floresta', 'Venta', 'Bogotá / La floresta', 'Casa en La Floresta', 3, 1, 1, 3, '129.35cm3', 52, 'Venta13.JPG', 1, 3, '$719.000.000'),
+(15, 1, 'Casa ubicada en Bosa', 'Venta', 'Bogotá / Bosa', 'Casa en Bosa', 2, 1, 0, 3, '124.20cm3', 2, 'Venta14.JPG', 1, 3, '$350.000.000'),
+(16, 2, 'Apartamento ubicado en Santa Ana', 'Venta', 'Bogotá / Santa Ana', 'Apartamento en Santa Ana', 2, 1, 0, 3, '160.20cm3', 52, 'Venta15.JPG', 1, 3, '$600.000.000');
 
 -- --------------------------------------------------------
 
@@ -195,8 +215,8 @@ CREATE TABLE `pagos` (
 --
 
 INSERT INTO `pagos` (`idpagos`, `tipopago`, `consignacion`, `descripcion`, `cliente`) VALUES
-(1, NULL, 'Consignacion001', 'Comprobante de Consignación:\r\n\r\nFecha: 15 de junio de 2024\r\n\r\nNombre del Consignante: Nixon Duarte\r\nID: 1\r\nNombre del Beneficiario: Juan Perez\r\nBanco: Banco ABC\r\nTipo de Cuenta: Cuenta de Ahorros\r\nNúmero de Cuenta: 1234567890\r\nConcepto: Pago de casa ubicada en Calle 100,Bogotá D.C\r\nMonto: $200,000,000', 1),
-(2, NULL, 'Consignacion002', 'Comprobante de Consignación:\r\n\r\nFecha: 20 de junio de 2024\r\n\r\nNombre del Consignante:Nicole Vargas\r\nID: 2\r\nNombre del Beneficiario: Martha Gomez\r\nBanco: Banco ABC\r\nTipo de Cuenta: Cuenta de Ahorros\r\nNúmero de Cuenta: 1234567890\r\nConcepto: Pago de casa ubicada en Calle 76a40 Cl. 8a Castilla,Bogotá D.C\r\nMonto: $300,000,000', 2);
+(1, 2, 'Consignacion001', 'Comprobante de Consignación:\r\n\r\nFecha: 15 de junio de 2024\r\n\r\nNombre del Consignante: Nixon Duarte\r\nID: 1\r\nNombre del Beneficiario: Juan Perez\r\nBanco: Banco ABC\r\nTipo de Cuenta: Cuenta de Ahorros\r\nNúmero de Cuenta: 1234567890\r\nConcepto: Pago de casa ubicada en Calle 100,Bogotá D.C\r\nMonto: $200,000,000', 1),
+(2, 2, 'Consignacion002', 'Comprobante de Consignación:\r\n\r\nFecha: 20 de junio de 2024\r\n\r\nNombre del Consignante:Nicole Vargas\r\nID: 2\r\nNombre del Beneficiario: Martha Gomez\r\nBanco: Banco ABC\r\nTipo de Cuenta: Cuenta de Ahorros\r\nNúmero de Cuenta: 1234567890\r\nConcepto: Pago de casa ubicada en Calle 76a40 Cl. 8a Castilla,Bogotá D.C\r\nMonto: $300,000,000', 2);
 
 -- --------------------------------------------------------
 
@@ -245,14 +265,14 @@ INSERT INTO `tipocliente` (`idtipocliente`, `descripciontipo`) VALUES
 
 CREATE TABLE `tipoempleado` (
   `idtipoempleado` int(11) NOT NULL,
-  `descripcion` varchar(20) DEFAULT NULL
+  `descripciontipo` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `tipoempleado`
 --
 
-INSERT INTO `tipoempleado` (`idtipoempleado`, `descripcion`) VALUES
+INSERT INTO `tipoempleado` (`idtipoempleado`, `descripciontipo`) VALUES
 (1, 'Administrador'),
 (2, 'Comercial');
 
@@ -264,18 +284,17 @@ INSERT INTO `tipoempleado` (`idtipoempleado`, `descripcion`) VALUES
 
 CREATE TABLE `tipoinmueble` (
   `idtipoinmueble` int(11) NOT NULL,
-  `descripcioninmueble` varchar(20) DEFAULT NULL,
-  `estadoinmueble` varchar(10) DEFAULT NULL
+  `descripcioninmueble` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `tipoinmueble`
 --
 
-INSERT INTO `tipoinmueble` (`idtipoinmueble`, `descripcioninmueble`, `estadoinmueble`) VALUES
-(1, 'Casa', NULL),
-(2, 'Apartamento', NULL),
-(3, 'Lote', NULL);
+INSERT INTO `tipoinmueble` (`idtipoinmueble`, `descripcioninmueble`) VALUES
+(1, 'Casa'),
+(2, 'Apartamento'),
+(3, 'Lote');
 
 -- --------------------------------------------------------
 
@@ -314,9 +333,7 @@ ALTER TABLE `analisisderiesgo`
 -- Indices de la tabla `avaluo`
 --
 ALTER TABLE `avaluo`
-  ADD PRIMARY KEY (`idavaluo`),
-  ADD KEY `Relacion8` (`inmueble`),
-  ADD KEY `Relacion9` (`cliente`);
+  ADD PRIMARY KEY (`idavaluo`);
 
 --
 -- Indices de la tabla `citas`
@@ -402,7 +419,7 @@ ALTER TABLE `analisisderiesgo`
 -- AUTO_INCREMENT de la tabla `avaluo`
 --
 ALTER TABLE `avaluo`
-  MODIFY `idavaluo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idavaluo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `citas`
@@ -426,7 +443,7 @@ ALTER TABLE `empleados`
 -- AUTO_INCREMENT de la tabla `inmueble`
 --
 ALTER TABLE `inmueble`
-  MODIFY `idinmueble` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idinmueble` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
@@ -474,13 +491,6 @@ ALTER TABLE `tipopagos`
 ALTER TABLE `analisisderiesgo`
   ADD CONSTRAINT `Relacion10` FOREIGN KEY (`inmueble`) REFERENCES `inmueble` (`idinmueble`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Relacion11` FOREIGN KEY (`pago`) REFERENCES `pagos` (`idpagos`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `avaluo`
---
-ALTER TABLE `avaluo`
-  ADD CONSTRAINT `Relacion8` FOREIGN KEY (`inmueble`) REFERENCES `inmueble` (`idinmueble`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Relacion9` FOREIGN KEY (`cliente`) REFERENCES `clientes` (`idcliente`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `citas`

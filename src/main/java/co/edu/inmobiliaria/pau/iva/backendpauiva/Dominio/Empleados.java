@@ -13,7 +13,7 @@ public class Empleados {
     private String apellido;
     @ManyToOne
     @JoinColumn(name = "tipoempleado", referencedColumnName = "idtipoempleado")
-    private TipoEmpleado tipoEmpleado;
+    private TipoEmpleado tipoempleado;
     @Column
     private int oficina;
     @Column
@@ -44,11 +44,11 @@ public class Empleados {
     }
 
     public TipoEmpleado getTipoEmpleado() {
-        return tipoEmpleado;
+        return tipoempleado;
     }
 
-    public void setTipoEmpleado(TipoEmpleado tipoEmpleado) {
-        this.tipoEmpleado = tipoEmpleado;
+    public void setTipoEmpleado(TipoEmpleado tipoempleado) {
+        this.tipoempleado = tipoempleado;
     }
     public int getOficina() {
         return oficina;

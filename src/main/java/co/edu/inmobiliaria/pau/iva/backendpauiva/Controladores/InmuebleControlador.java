@@ -45,6 +45,7 @@ public class InmuebleControlador {
         p.setIdinmueble(id);
         return service.edit(p);
     }
+    
     @DeleteMapping("/submit/{id}") 
     public Inmueble delete(@PathVariable("id") int id){
         return service.delete(id);
