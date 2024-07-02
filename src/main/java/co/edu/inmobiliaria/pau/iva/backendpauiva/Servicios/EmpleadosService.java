@@ -5,6 +5,8 @@
 package co.edu.inmobiliaria.pau.iva.backendpauiva.Servicios;
 
 import co.edu.inmobiliaria.pau.iva.backendpauiva.Dominio.Empleados;
+import java.util.List;
 public interface EmpleadosService {
     Empleados obtenerClientePorCorreo(String correo);
+    List<Empleados> listarEmpleados();
 }

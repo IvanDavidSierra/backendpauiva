@@ -18,6 +18,8 @@ public class Empleados {
     private int oficina;
     @Column
     private String correo; 
+    @Column
+    private String telefono;
 
     public int getIdempleado() {
         return idempleado;
@@ -64,6 +66,22 @@ public class Empleados {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public TipoEmpleado getTipoempleado() {
+        return tipoempleado;
+    }
+
+    public void setTipoempleado(TipoEmpleado tipoempleado) {
+        this.tipoempleado = tipoempleado;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
     
     

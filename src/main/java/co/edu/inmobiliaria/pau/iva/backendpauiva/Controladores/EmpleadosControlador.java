@@ -2,6 +2,7 @@ package co.edu.inmobiliaria.pau.iva.backendpauiva.Controladores;
 
 import co.edu.inmobiliaria.pau.iva.backendpauiva.Dominio.Empleados;
 import co.edu.inmobiliaria.pau.iva.backendpauiva.Servicios.EmpleadosService;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,5 +41,10 @@ public class EmpleadosControlador {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente no encontrado");
         }
     }  
+    
+    @GetMapping("/submit")
+    public List<Empleados> obtenerEmpleados() {
+      return service.listarEmpleados();
+    }
 
 }
