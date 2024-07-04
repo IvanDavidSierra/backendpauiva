@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-06-2024 a las 19:51:04
+-- Tiempo de generación: 04-07-2024 a las 18:09:58
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -43,27 +43,6 @@ CREATE TABLE `analisisderiesgo` (
 INSERT INTO `analisisderiesgo` (`idanalisis`, `listaclinton`, `centralesriesgo`, `certificado`, `inmueble`, `pago`) VALUES
 (1, 'No', 'Bajo', 'Cert001', 1, 1),
 (2, 'Si', 'Medio', 'cert002', 2, 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `avaluo`
---
-
-CREATE TABLE `avaluo` (
-  `idavaluo` int(11) NOT NULL,
-  `valor` varchar(30) DEFAULT NULL,
-  `inmueble` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Volcado de datos para la tabla `avaluo`
---
-
-INSERT INTO `avaluo` (`idavaluo`, `valor`, `inmueble`) VALUES
-(1, '$2.000.000', 1),
-(2, '$1.500.000', 2),
-(3, '$100.000.000', 3);
 
 -- --------------------------------------------------------
 
@@ -110,20 +89,8 @@ CREATE TABLE `clientes` (
 INSERT INTO `clientes` (`idcliente`, `nombre`, `apellido`, `razon_social`, `nit`, `tipocliente`, `telefono`, `correo`) VALUES
 (1, 'Nixon', 'Duarte', NULL, NULL, 1, '1234567891', 'Nixonduarte@inaplesinmo.com'),
 (2, 'Nicole', 'Vargas', NULL, NULL, 1, '235651212', 'NVargas@inaplesinmo.com'),
-(44, 'ewewqasd', 'acqwcqwc', NULL, NULL, 1, '12222144', 'cascaxzzcxc@hotmail.com'),
-(45, 'eeeeeqwqwe', 'qwqwqwqw', NULL, NULL, 1, '1597844', 'qwqsdafa@gmail.com'),
-(46, NULL, NULL, 'eeeeewwww', 'wwwwwww', 2, '1597444', 'qweqwe@gmail.com'),
-(47, 'mmmmmm', 'mmmmmmm', NULL, NULL, 1, '15977444', 'aaaa@gmail.com'),
-(48, 'aaaaaa', 'aaaae', NULL, NULL, 1, '365544', '222323@gmail.com'),
-(52, 'Ivan David', 'Sierra Cudriz', NULL, NULL, 1, '3103238798', 'ivansierra259@gmail.com'),
-(53, NULL, NULL, 'empresa chamo', '4448877777', 3, '98777745', 'chamo@gmail.com'),
-(54, 'aaa', 'aaaaaaa', NULL, NULL, 1, '1544444', 'pppppp'),
-(55, NULL, NULL, 'asdasd', 'eeeeee', 3, '2226655', 'asdasd@gmail.com'),
-(56, 'aaaaaa', 'aaadasd', NULL, NULL, 1, '1547777', 'asdasda@gmail.com'),
-(57, 'qqqwwww', 'eeeeeeeeeee', NULL, NULL, 1, '154444', 'asdasd@gmail.com'),
-(58, 'asdeqqqq', 'sddddsd', NULL, NULL, 1, '1515444', 'asdasdxcs@gmail.com'),
-(59, NULL, NULL, 'aaaaa', '151545454545', 2, '15444447', 'sdasda@gmailk.com'),
-(60, NULL, NULL, 'empresa ola', '11444444', 2, '154447877', 'ola2333@gmail.com');
+(52, 'Ivan David', 'Sierra Cudriz', NULL, NULL, 1, '3103238790', 'ivansierra259@gmail.com'),
+(67, NULL, NULL, 'empresa olacomotas', '122455788', 2, '13113134555', 'ola@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -137,17 +104,18 @@ CREATE TABLE `empleados` (
   `apellido` varchar(20) DEFAULT NULL,
   `tipoempleado` int(11) DEFAULT NULL,
   `oficina` int(11) DEFAULT NULL,
-  `correo` varchar(50) DEFAULT NULL
+  `correo` varchar(50) DEFAULT NULL,
+  `telefono` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `empleados`
 --
 
-INSERT INTO `empleados` (`idempleado`, `nombre`, `apellido`, `tipoempleado`, `oficina`, `correo`) VALUES
-(1, 'Martha', 'Gonzales', 1, 1, 'm.gonzales@inaplesinmo.com'),
-(2, 'Juan', 'Perez', 2, 1, 'juan.Perez@inaplesinmo.com'),
-(3, 'Alejandro', 'Robles', 2, 2, 'alejarobles145@gmail.com');
+INSERT INTO `empleados` (`idempleado`, `nombre`, `apellido`, `tipoempleado`, `oficina`, `correo`, `telefono`) VALUES
+(1, 'Martha', 'Gonzales', 1, 1, 'm.gonzales@inaplesinmo.com', '3125487984'),
+(2, 'Juan', 'Perez', 2, 1, 'juan.Perez@inaplesinmo.com', '3142635014'),
+(3, 'Alejandro', 'Robles', 2, 2, 'alejarobles145@gmail.com', '3112649874');
 
 -- --------------------------------------------------------
 
@@ -179,22 +147,28 @@ CREATE TABLE `inmueble` (
 --
 
 INSERT INTO `inmueble` (`idinmueble`, `tipoinmueble`, `tituloinmueble`, `estado`, `direccion`, `descripcion`, `habitaciones`, `banos`, `garajes`, `estrato`, `area`, `propietario`, `foto`, `pago`, `comercial`, `valor`) VALUES
-(1, 1, 'Casa ubicada en Calle 100', 'Venta', 'Calle 100', 'Ubicada en un exclusivo barrio residencial, esta impresionante residencia de estrato alto combina elegancia y confort en cada detalle. Con una arquitectura moderna y acabados de lujo, la propiedad se extiende sobre aproximadamente 800 metros cuadrados. Sus espacios interiores incluyen una amplia sala de estar con techos altos y chimenea central, un comedor formal diseñado para grandes reuniones, y una cocina gourmet equipada con electrodomésticos de última generación y encimeras de mármol. Además, cuenta con varias suites principales y adicionales, todas con baños privados y armarios empotrados, un estudio o biblioteca, una sala de cine en casa, sala de juegos con mesa de billar, gimnasio privado y áreas de entretenimiento al aire libre. Los exteriores están diseñados con amplios jardines paisajísticos, terrazas cubiertas y descubiertas con vistas panorámicas, una piscina climatizada con jacuzzi, y un garaje privado para varios vehículos. Equipada con suelos de mármol, iluminación LED, climatización central y sistemas de seguridad avanzados, esta propiedad representa el epitome del lujo residencial, valorada por su ubicación exclusiva y todas las comodidades que ofrece.', 4, 2, 1, 3, '450.30cm3', 2, 'inmueble-destacada1.jpg', 1, 1, '$100.000.000'),
-(2, 2, 'Apartamento en la Calle 8', 'Arriendo', '76a40 Cl. 8a', 'La propiedad evaluada es una casa unifamiliar de dos pisos, ubicada en Calle Principal de Castilla,en la ciudad de Bogota D.C,Colombia. La estructura está construida con concreto armado y tiene un área total de 200 metros cuadrados. La casa cuenta con cuatro habitaciones, tres baños completos, cocina, sala de estar, comedor y un garaje para dos vehículos. Está equipada con sistemas de calefacción central y aire acondicionado.', 3, 1, 0, 3, '250.00cm3', 1, 'inmueble-destacada2.jpg', 2, 2, '$800.000'),
+(1, 1, 'Casa ubicada en Calle 100', 'Venta', 'Calle 100', 'Ubicada en un exclusivo barrio residencial, esta impresionante residencia de estrato alto combina elegancia y confort en cada detalle. Con una arquitectura moderna y acabados de lujo, la propiedad se extiende sobre aproximadamente 800 metros cuadrados. Sus espacios interiores incluyen una amplia sala de estar con techos altos y chimenea central, un comedor formal diseñado para grandes reuniones, y una cocina gourmet equipada con electrodomésticos de última generación y encimeras de mármol. Además, cuenta con varias suites principales y adicionales, todas con baños privados y armarios empotrados, un estudio o biblioteca, una sala de cine en casa, sala de juegos con mesa de billar, gimnasio privado y áreas de entretenimiento al aire libre. Los exteriores están diseñados con amplios jardines paisajísticos, terrazas cubiertas y descubiertas con vistas panorámicas, una piscina climatizada con jacuzzi, y un garaje privado para varios vehículos. Equipada con suelos de mármol, iluminación LED, climatización central y sistemas de seguridad avanzados, esta propiedad representa el epitome del lujo residencial, valorada por su ubicación exclusiva y todas las comodidades que ofrece.', 5, 6, 1, 3, '450.30cm3', 2, 'inmueble-destacada1.jpg', 1, 2, '$100.000.000'),
+(2, 2, 'Apartamento en la Calle 87', 'Arriendo', '76a40 Cl. 8a', 'La propiedad evaluada es una casa unifamiliar de dos pisos, ubicada en Calle Principal de Castilla,en la ciudad de Bogota D.C,Colombia. La estructura está construida con concreto armado y tiene un área total de 200 metros cuadrados. La casa cuenta con cuatro habitaciones, tres baños completos, cocina, sala de estar, comedor y un garaje para dos vehículos. Está equipada con sistemas de calefacción central y aire acondicionado.', 2, 1, 0, 3, '250.00cm3', 1, 'inmueble-destacada2.jpg', 2, 2, '$800.000'),
 (3, 1, 'Casa ubicada en la 30', 'Venta', 'Cra. 33 # 40 - 15', 'casa muy buena', 2, 1, 0, 2, '120.00cm3', 52, 'inmueble-destacada3.jpg', 2, 3, '$1.200.000'),
-(4, 2, 'Apartamento ubicado en Cedritos', 'Venta', 'Bogotá / Cedritos', 'Casa en cedritos', 3, 2, 0, 4, '120.00cm3', 44, 'casa-cedritos.JPG', 1, 1, '$450.000.000'),
 (5, 1, 'Casa ubicada en la Calle 100', 'Venta', 'Bogotá / Calle 100', 'Casa en la calle 100', 3, 2, 1, 4, '120.0cm3', 2, 'Casa-calle100.JPG', 2, 3, '$1.100.000.000'),
-(6, 1, 'Casa ubicada en Engativa', 'Venta', 'Bogotá/Engativa', 'Casa ubicada en Engativa', 2, 1, 0, 3, '210.20cm3', 52, 'casa-engativa.jpg', 2, 1, '$2.100.000.000'),
-(7, 1, 'Casa ubicada en Kennedy', 'Venta', 'Bogotá/ Kennedy', 'Casa en Kennedy', 2, 1, 1, 3, '129.02cm3', 2, 'casa-kennedy.JPG', 2, 2, '$100.000.000'),
+(6, 1, 'Casa ubicada en Engativa', 'Venta', 'Bogotá/Engativa', 'Casa ubicada en Engativa', 2, 1, 0, 3, '210.20cm3', 52, 'casa-engativa.jpg', 2, 3, '$2.100.000.000'),
+(7, 1, 'Casa ubicada en Bosa', 'Venta', 'Bogotá/ Kennedy', 'Casa en Kennedy', 4, 2, 0, 3, '129.02cm3', 2, 'casa-kennedy.JPG', 2, 2, '$100.000.000'),
 (8, 1, 'Casa ubicada en Colina Campestre', 'Venta', 'Bogotá / Colina Campestre', 'Casa en Colina Campestre', 4, 3, 2, 4, '350.20cm3', 52, 'casa-colina.JPG', 2, 2, '$500.000.000'),
 (9, 1, 'Casa ubicada en Barrios Unidos', 'Venta', 'Bogotá / Barrios Unidos', 'Casa en Barrios Unidos', 2, 1, 0, 3, '120.35cm3', 2, 'casa-barriosunidos.JPG', 1, 3, '$240.000.000'),
 (10, 3, 'Lote ubicado en Bosa', 'Venta', 'Bogotá / Bosa', 'Lote en Bosa', 0, 0, 0, 3, '125.00cm3', 52, 'lote-bosa.JPG', 1, 2, '$150.000.000'),
 (11, 1, 'Casa ubicada en Castilla', 'Venta', 'Bogotá / Castilla', 'Casa en Castilla', 4, 2, 1, 3, '250.20cm3', 1, 'casa-castilla.JPG', 1, 3, '$150.000.000'),
 (12, 2, 'Apartamento ubicado en Centro de Niza', 'Venta', 'Bogotá /  Centro de Niza', 'Apartamento ubicado en Centro de niza', 2, 1, 0, 2, '120.00cm3', 52, 'Venta11.JPG', 1, 3, '$1.997.000.000'),
 (13, 1, 'Casa ubicada en Villa del Prado', 'Venta', 'Bogotá / Villa del Prado', 'Casa en Villa del Prado', 2, 1, 0, 3, '126.20cm3', 52, 'Venta12.JPG', 1, 2, '$400.000.000'),
-(14, 1, 'Casa ubicada en La Floresta', 'Venta', 'Bogotá / La floresta', 'Casa en La Floresta', 3, 1, 1, 3, '129.35cm3', 52, 'Venta13.JPG', 1, 3, '$719.000.000'),
-(15, 1, 'Casa ubicada en Bosa', 'Venta', 'Bogotá / Bosa', 'Casa en Bosa', 2, 1, 0, 3, '124.20cm3', 2, 'Venta14.JPG', 1, 3, '$350.000.000'),
-(16, 2, 'Apartamento ubicado en Santa Ana', 'Venta', 'Bogotá / Santa Ana', 'Apartamento en Santa Ana', 2, 1, 0, 3, '160.20cm3', 52, 'Venta15.JPG', 1, 3, '$600.000.000');
+(17, 1, 'Casa ubicada en Cedritos', 'Arriendo', 'Bogotá / Cedritos', 'Casa en Cedritos', 3, 1, 1, 3, '124.00cm3', 52, 'Arriendo2.JPG', 1, 2, '$800.000'),
+(18, 1, 'Casa ubicada en Kennedy', 'Arriendo', 'Bogotá / Kennedy', 'Casa en Kennedy', 4, 2, 1, 3, '124.00cm3', 2, 'Arriendo3.JPG', 1, 3, '$1.000.000'),
+(19, 2, 'Apartamento ubicado en Santa fe', 'Arriendo', 'Bogotá / Santafe', 'Apartamento en Santa fe', 2, 1, 0, 2, '110.20cm3', 1, 'Arriendo4.JPG', 1, 1, '$400.000'),
+(20, 1, 'Casa ubicada en Alamos', 'Arriendo', 'Bogotá / Alamos', 'Casa en Alamos', 3, 2, 1, 3, '240.21cm3', 2, 'Arriendo5.JPG', 1, 3, '$1.100.000'),
+(21, 2, 'Habitacion ubicada en Usme', 'Arriendo', 'Bogotá / Usme', 'Habitacion en Usme', 1, 1, 0, 2, '100.24cm3', 1, 'Arriendo6.JPG', 1, 2, '$100.000'),
+(22, 1, 'Casa ubicada en Suba', 'Arriendo', 'Bogotá / Suba', 'Casa en Suba', 3, 2, 1, 3, '150.30cm3', 2, 'Arriendo7.JPG', 1, 3, '$1.200.000'),
+(23, 2, 'Apartamento ubicado en Suba', 'Arriendo', 'Bogotá / Suba', 'Apartamento en Suba', 4, 2, 1, 3, '145.30cm3', 52, 'Arriendo8.JPG', 1, 2, '$1.000.000'),
+(24, 1, 'Casa ubicada en Castilla', 'Arriendo', 'Bogotá / Castilla', 'Casa en Castilla', 3, 1, 0, 3, '146.30cm3', 2, 'Arriendo9.JPG', 1, 3, '$2.000.000'),
+(25, 2, 'Apartamento ubicado en Colina Campestre', 'Arriendo', 'Bogotá / Colina Campestre', 'Apartamento en Colina Campestre', 3, 1, 1, 3, '254.35cm3', 2, 'Arriendo10.JPG', 1, 2, '$3.000.000'),
+(26, 2, 'Apartamento ubicado en Rio Negro', 'Arriendo', 'Bogotá / Rio Negro', 'Apartamento en Rio Negro', 3, 1, 1, 3, '124.00cm3', 52, 'Arriendo15.JPG', 1, 2, '$6.000.000');
 
 -- --------------------------------------------------------
 
@@ -245,14 +219,14 @@ INSERT INTO `sucursales` (`idsucursales`, `ubicacion`) VALUES
 
 CREATE TABLE `tipocliente` (
   `idtipocliente` int(11) NOT NULL,
-  `descripciontipo` varchar(20) DEFAULT NULL
+  `descripcion` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `tipocliente`
 --
 
-INSERT INTO `tipocliente` (`idtipocliente`, `descripciontipo`) VALUES
+INSERT INTO `tipocliente` (`idtipocliente`, `descripcion`) VALUES
 (1, 'Persona Natural'),
 (2, 'Pymes'),
 (3, 'Empresariales');
@@ -265,14 +239,14 @@ INSERT INTO `tipocliente` (`idtipocliente`, `descripciontipo`) VALUES
 
 CREATE TABLE `tipoempleado` (
   `idtipoempleado` int(11) NOT NULL,
-  `descripciontipo` varchar(20) DEFAULT NULL
+  `descripcion` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `tipoempleado`
 --
 
-INSERT INTO `tipoempleado` (`idtipoempleado`, `descripciontipo`) VALUES
+INSERT INTO `tipoempleado` (`idtipoempleado`, `descripcion`) VALUES
 (1, 'Administrador'),
 (2, 'Comercial');
 
@@ -328,12 +302,6 @@ ALTER TABLE `analisisderiesgo`
   ADD PRIMARY KEY (`idanalisis`),
   ADD KEY `Relacion10` (`inmueble`),
   ADD KEY `Relacion11` (`pago`);
-
---
--- Indices de la tabla `avaluo`
---
-ALTER TABLE `avaluo`
-  ADD PRIMARY KEY (`idavaluo`);
 
 --
 -- Indices de la tabla `citas`
@@ -416,12 +384,6 @@ ALTER TABLE `analisisderiesgo`
   MODIFY `idanalisis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `avaluo`
---
-ALTER TABLE `avaluo`
-  MODIFY `idavaluo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
@@ -431,7 +393,7 @@ ALTER TABLE `citas`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de la tabla `empleados`
@@ -443,7 +405,7 @@ ALTER TABLE `empleados`
 -- AUTO_INCREMENT de la tabla `inmueble`
 --
 ALTER TABLE `inmueble`
-  MODIFY `idinmueble` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idinmueble` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`

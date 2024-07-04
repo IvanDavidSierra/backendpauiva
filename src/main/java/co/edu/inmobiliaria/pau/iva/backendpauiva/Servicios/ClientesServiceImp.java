@@ -1,6 +1,7 @@
 package co.edu.inmobiliaria.pau.iva.backendpauiva.Servicios;
 import co.edu.inmobiliaria.pau.iva.backendpauiva.Dominio.Clientes;
 import co.edu.inmobiliaria.pau.iva.backendpauiva.Infraestructura.ClientesRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -38,11 +39,38 @@ public class ClientesServiceImp implements ClientesService{
         return cliente;
     }
     
-    
-    
     @Override
     public Clientes obtenerClientePorCorreo(String correo) {
         return clientesRepository.findByCorreo(correo);
+    }
+    
+    @Override
+    public List<Clientes> listar(){
+        return clientesRepository.findAll();
+    }
+
+    @Override
+    public Clientes listarId(int id) {
+        return clientesRepository.findById(id);
+    }
+    
+    @Override
+    public Clientes add(Clientes p) {
+        return clientesRepository.save(p);
+    }
+
+    @Override    
+    public Clientes edit(Clientes p) {
+        return clientesRepository.save(p);
+    }
+
+    @Override   
+    public Clientes delete(int id) {
+        Clientes p = clientesRepository.findById(id);
+        if(p!=null){
+            clientesRepository.delete(p);
+        }
+        return p;
     }
 }
 

@@ -9,7 +9,7 @@ public class TipoCliente {
     private int idtipocliente;
     
     @Column
-    private String descripciontipo;
+    private String descripcion;
 
     public int getIdtipocliente() {
         return idtipocliente;
@@ -20,11 +20,11 @@ public class TipoCliente {
     }
 
     public String getDescripciontipo() {
-        return descripciontipo;
+        return descripcion;
     }
 
     public void setDescripciontipo(String descripciontipo) {
-        this.descripciontipo = descripciontipo;
+        this.descripcion = descripciontipo;
     }
 
 }

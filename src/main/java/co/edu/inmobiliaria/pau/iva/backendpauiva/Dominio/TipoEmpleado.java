@@ -10,7 +10,7 @@ public class TipoEmpleado {
     private int idtipoempleado;
     
     @Column
-    private String descripciontipo; 
+    private String descripcion; 
 
     public int getIdtipoempleado() {
         return idtipoempleado;
@@ -21,11 +21,11 @@ public class TipoEmpleado {
     }
 
     public String getDescripcion() {
-        return descripciontipo;
+        return descripcion;
     }
 
     public void setDescripcion(String descripciontipo) {
-        this.descripciontipo = descripciontipo;
+        this.descripcion = descripciontipo;
     }
     
 }

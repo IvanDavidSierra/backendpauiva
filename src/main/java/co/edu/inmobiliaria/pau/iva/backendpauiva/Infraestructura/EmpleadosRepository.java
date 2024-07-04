@@ -8,4 +8,6 @@ public interface EmpleadosRepository extends Repository<Empleados, Integer>{
     Empleados findByCorreo(String correo);
     List<Empleados> findAll();
     Empleados findById(int idempleado);
+    Empleados save(Empleados p);
+    void delete(Empleados p);
 }
